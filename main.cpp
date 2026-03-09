@@ -1,6 +1,19 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
+void checkPressed(sf::Keyboard::Key key, float position, sf::CircleShape &note, int &score, int &combo, sf::Text &scoreText, sf::Text &comboText, sf::CircleShape &circle, sf::Event &event)
+{
+    if (event.key.code == key && note.getPosition().y > 300 && note.getPosition().y < 700 && note.getPosition().x == position)
+    {
+        note.setPosition((rand() % 4 + 1) * 100, 0.f);
+
+        combo++;
+        score += 100 * combo;
+        scoreText.setString(std::to_string(score));
+        comboText.setString(std::to_string(combo));
+    }
+}
+
 int main()
 {
 
@@ -71,57 +84,18 @@ int main()
             case sf::Event::KeyPressed:
                 if (event.key.code == sf::Keyboard::Q)
                     circleQ.setFillColor(sf::Color::Yellow);
-                if (event.key.code == sf::Keyboard::Q && note.getPosition().y > 300 && note.getPosition().y < 700 && note.getPosition().x == 100)
-                {
-                    std::cout << "okay, ill let this one pass.." << '\n';
-                    note.setPosition((rand() % 4 + 1) * 100, 0.f);
-
-                    combo++;
-                    score += 100 * combo;
-
-                    scoreText.setString(std::to_string(score));
-                    comboText.setString(std::to_string(combo));
-                }
+                checkPressed(sf::Keyboard::Q, 100.f, note, score, combo, scoreText, comboText, circleQ, event);
 
                 if (event.key.code == sf::Keyboard::W)
                     circleW.setFillColor(sf::Color::Yellow);
-                if (event.key.code == sf::Keyboard::W && note.getPosition().y > 300 && note.getPosition().y < 700 && note.getPosition().x == 200)
-                {
-                    std::cout << "okay, ill let this one pass.." << '\n';
-                    note.setPosition((rand() % 4 + 1) * 100, 0.f);
-
-                    combo++;
-                    score += 100 * combo;
-
-                    scoreText.setString(std::to_string(score));
-                    comboText.setString(std::to_string(combo));
-                }
+                checkPressed(sf::Keyboard::W, 200.f, note, score, combo, scoreText, comboText, circleW, event);
 
                 if (event.key.code == sf::Keyboard::O)
                     circleO.setFillColor(sf::Color::Yellow);
-                if (event.key.code == sf::Keyboard::O && note.getPosition().y > 300 && note.getPosition().y < 700 && note.getPosition().x == 300)
-                {
-                    std::cout << "okay, ill let this one pass.." << '\n';
-                    note.setPosition((rand() % 4 + 1) * 100, 0.f);
-
-                    combo++;
-                    score += 100 * combo;
-
-                    scoreText.setString(std::to_string(score));
-                    comboText.setString(std::to_string(combo));
-                }
+                checkPressed(sf::Keyboard::O, 300.f, note, score, combo, scoreText, comboText, circleO, event);
                 if (event.key.code == sf::Keyboard::P)
                     circleP.setFillColor(sf::Color::Yellow);
-                if (event.key.code == sf::Keyboard::P && note.getPosition().y > 300 && note.getPosition().y < 700 && note.getPosition().x == 400)
-                {
-                    std::cout << "okay, ill let this one pass.." << '\n';
-                    note.setPosition((rand() % 4 + 1) * 100, 0.f);
-
-                    combo++;
-                    score += 100 * combo;
-                    scoreText.setString(std::to_string(score));
-                    comboText.setString(std::to_string(combo));
-                }
+                checkPressed(sf::Keyboard::P, 400.f, note, score, combo, scoreText, comboText, circleP, event);
                 break;
 
             case sf::Event::KeyReleased:
