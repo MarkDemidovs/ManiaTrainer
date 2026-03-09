@@ -30,7 +30,7 @@ int main()
     sf::Text scoreText;
     scoreText.setFont(font);
     scoreText.setString("0");
-    scoreText.setPosition(10.f, 10.f);
+    scoreText.setPosition(600.f, 10.f);
     while (window.isOpen())
     {
         sf::Event event;
@@ -47,7 +47,7 @@ int main()
             scoreText.setString(std::to_string(score));
         }
 
-        
+
         while (window.pollEvent(event))
         {
             switch (event.type)
