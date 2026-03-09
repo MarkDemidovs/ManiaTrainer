@@ -5,6 +5,8 @@ int main()
 {
 
     int score {0};
+    int combo {0};
+
     sf::RenderWindow window(sf::VideoMode(800, 800), "click the circles");
     window.setFramerateLimit(60);
 
@@ -31,6 +33,12 @@ int main()
     scoreText.setFont(font);
     scoreText.setString("0");
     scoreText.setPosition(600.f, 10.f);
+
+    sf::Text comboText;
+    comboText.setFont(font);
+    comboText.setString("0");
+    comboText.setPosition(600.f, 80.f);
+
     while (window.isOpen())
     {
         sf::Event event;
@@ -40,7 +48,11 @@ int main()
         {
             note.setPosition((rand() % 4 + 1) * 100, 0.f);
             score-=100;
+
+            combo = 0;
+            
             scoreText.setString(std::to_string(score));
+            comboText.setString(std::to_string(combo));
         }
         if (score <= 0) {
             score = 0;
@@ -64,7 +76,10 @@ int main()
                     std::cout << "okay, ill let this one pass.." << '\n';
                     note.setPosition((rand() % 4 + 1) * 100, 0.f);
                     score+=100;
+                    combo++;
+
                     scoreText.setString(std::to_string(score));
+                    comboText.setString(std::to_string(combo));
                 }
 
                 if (event.key.code == sf::Keyboard::W)
@@ -74,7 +89,9 @@ int main()
                     std::cout << "okay, ill let this one pass.." << '\n';
                     note.setPosition((rand() % 4 + 1) * 100, 0.f);
                     score+=100;
+                    combo++;
                     scoreText.setString(std::to_string(score));
+                    comboText.setString(std::to_string(combo));
                 }
 
                 if (event.key.code == sf::Keyboard::O)
@@ -84,7 +101,10 @@ int main()
                     std::cout << "okay, ill let this one pass.." << '\n';
                     note.setPosition((rand() % 4 + 1) * 100, 0.f);
                     score+=100;
+                    combo++;
+
                     scoreText.setString(std::to_string(score));
+                    comboText.setString(std::to_string(combo));
                 }
                 if (event.key.code == sf::Keyboard::P)
                     circleP.setFillColor(sf::Color::Yellow);
@@ -93,7 +113,9 @@ int main()
                     std::cout << "okay, ill let this one pass.." << '\n';
                     note.setPosition((rand() % 4 + 1) * 100, 0.f);
                     score+=100;
+                    combo++;
                     scoreText.setString(std::to_string(score));
+                    comboText.setString(std::to_string(combo));
                 }
                 break;
 
@@ -121,6 +143,7 @@ int main()
         window.draw(circleP);
         window.draw(note);
         window.draw(scoreText);
+        window.draw(comboText);
 
         window.display();
     }
