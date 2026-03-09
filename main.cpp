@@ -4,8 +4,8 @@
 int main()
 {
 
-    int score {0};
-    int combo {0};
+    int score{0};
+    int combo{0};
 
     sf::RenderWindow window(sf::VideoMode(800, 800), "click the circles");
     window.setFramerateLimit(60);
@@ -47,18 +47,18 @@ int main()
         if (note.getPosition().y > 800)
         {
             note.setPosition((rand() % 4 + 1) * 100, 0.f);
-            score-=100;
+            score -= 100;
 
             combo = 0;
-            
+
             scoreText.setString(std::to_string(score));
             comboText.setString(std::to_string(combo));
         }
-        if (score <= 0) {
+        if (score <= 0)
+        {
             score = 0;
             scoreText.setString(std::to_string(score));
         }
-
 
         while (window.pollEvent(event))
         {
@@ -75,8 +75,9 @@ int main()
                 {
                     std::cout << "okay, ill let this one pass.." << '\n';
                     note.setPosition((rand() % 4 + 1) * 100, 0.f);
-                    score+=100;
+
                     combo++;
+                    score += 100 * combo;
 
                     scoreText.setString(std::to_string(score));
                     comboText.setString(std::to_string(combo));
@@ -88,8 +89,10 @@ int main()
                 {
                     std::cout << "okay, ill let this one pass.." << '\n';
                     note.setPosition((rand() % 4 + 1) * 100, 0.f);
-                    score+=100;
+
                     combo++;
+                    score += 100 * combo;
+
                     scoreText.setString(std::to_string(score));
                     comboText.setString(std::to_string(combo));
                 }
@@ -100,8 +103,9 @@ int main()
                 {
                     std::cout << "okay, ill let this one pass.." << '\n';
                     note.setPosition((rand() % 4 + 1) * 100, 0.f);
-                    score+=100;
+
                     combo++;
+                    score += 100 * combo;
 
                     scoreText.setString(std::to_string(score));
                     comboText.setString(std::to_string(combo));
@@ -112,8 +116,9 @@ int main()
                 {
                     std::cout << "okay, ill let this one pass.." << '\n';
                     note.setPosition((rand() % 4 + 1) * 100, 0.f);
-                    score+=100;
+
                     combo++;
+                    score += 100 * combo;
                     scoreText.setString(std::to_string(score));
                     comboText.setString(std::to_string(combo));
                 }
