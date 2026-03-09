@@ -39,8 +39,15 @@ int main()
         if (note.getPosition().y > 800)
         {
             note.setPosition((rand() % 4 + 1) * 100, 0.f);
+            score-=100;
+            scoreText.setString(std::to_string(score));
+        }
+        if (score <= 0) {
+            score = 0;
+            scoreText.setString(std::to_string(score));
         }
 
+        
         while (window.pollEvent(event))
         {
             switch (event.type)
