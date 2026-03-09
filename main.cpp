@@ -56,7 +56,7 @@ int main()
                 {
                     std::cout << "okay, ill let this one pass.." << '\n';
                     note.setPosition((rand() % 4 + 1) * 100, 0.f);
-                    score++;
+                    score+=100;
                     scoreText.setString(std::to_string(score));
                 }
 
@@ -66,7 +66,7 @@ int main()
                 {
                     std::cout << "okay, ill let this one pass.." << '\n';
                     note.setPosition((rand() % 4 + 1) * 100, 0.f);
-                    score++;
+                    score+=100;
                     scoreText.setString(std::to_string(score));
                 }
 
@@ -76,7 +76,7 @@ int main()
                 {
                     std::cout << "okay, ill let this one pass.." << '\n';
                     note.setPosition((rand() % 4 + 1) * 100, 0.f);
-                    score++;
+                    score+=100;
                     scoreText.setString(std::to_string(score));
                 }
                 if (event.key.code == sf::Keyboard::P)
@@ -85,7 +85,7 @@ int main()
                 {
                     std::cout << "okay, ill let this one pass.." << '\n';
                     note.setPosition((rand() % 4 + 1) * 100, 0.f);
-                    score++;
+                    score+=100;
                     scoreText.setString(std::to_string(score));
                 }
                 break;
