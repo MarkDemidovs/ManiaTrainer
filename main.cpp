@@ -1,7 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
-void checkPressed(sf::Keyboard::Key key, float position, sf::CircleShape &note, int &score, int &combo, sf::Text &scoreText, sf::Text &comboText, sf::CircleShape &circle, sf::Event &event)
+void checkPressed(sf::Keyboard::Key key, float position, sf::CircleShape &note, int &score, int &combo, sf::Text &scoreText, sf::Text &comboText, sf::CircleShape &circle, sf::Event &event, float &speed, sf::Text &speedText)
 {
     if (event.key.code == key && note.getPosition().y > 300 && note.getPosition().y < 700 && note.getPosition().x == position)
     {
@@ -11,6 +11,10 @@ void checkPressed(sf::Keyboard::Key key, float position, sf::CircleShape &note, 
         score += 100 * combo;
         scoreText.setString(std::to_string(score));
         comboText.setString(std::to_string(combo));
+        speedText.setString(std::to_string(speed));
+        if (combo % 5 == 0) {
+            speed++;
+        } 
     }
 }
 
@@ -19,6 +23,7 @@ int main()
 
     int score{0};
     int combo{0};
+    float speed{5.f};
 
     sf::RenderWindow window(sf::VideoMode(800, 800), "click the circles");
     window.setFramerateLimit(60);
@@ -52,10 +57,15 @@ int main()
     comboText.setString("0");
     comboText.setPosition(600.f, 80.f);
 
+    sf::Text speedText;
+    speedText.setFont(font);
+    speedText.setString("5");
+    speedText.setPosition(600.f, 160);
+
     while (window.isOpen())
     {
         sf::Event event;
-        note.move(0.f, 25.f);
+        note.move(0.f, speed);
 
         if (note.getPosition().y > 800)
         {
@@ -84,18 +94,18 @@ int main()
             case sf::Event::KeyPressed:
                 if (event.key.code == sf::Keyboard::Q)
                     circleQ.setFillColor(sf::Color::Yellow);
-                checkPressed(sf::Keyboard::Q, 100.f, note, score, combo, scoreText, comboText, circleQ, event);
+                checkPressed(sf::Keyboard::Q, 100.f, note, score, combo, scoreText, comboText, circleQ, event, speed, speedText);
 
                 if (event.key.code == sf::Keyboard::W)
                     circleW.setFillColor(sf::Color::Yellow);
-                checkPressed(sf::Keyboard::W, 200.f, note, score, combo, scoreText, comboText, circleW, event);
+                checkPressed(sf::Keyboard::W, 200.f, note, score, combo, scoreText, comboText, circleW, event, speed, speedText);
 
                 if (event.key.code == sf::Keyboard::O)
                     circleO.setFillColor(sf::Color::Yellow);
-                checkPressed(sf::Keyboard::O, 300.f, note, score, combo, scoreText, comboText, circleO, event);
+                checkPressed(sf::Keyboard::O, 300.f, note, score, combo, scoreText, comboText, circleO, event, speed, speedText);
                 if (event.key.code == sf::Keyboard::P)
                     circleP.setFillColor(sf::Color::Yellow);
-                checkPressed(sf::Keyboard::P, 400.f, note, score, combo, scoreText, comboText, circleP, event);
+                checkPressed(sf::Keyboard::P, 400.f, note, score, combo, scoreText, comboText, circleP, event, speed, speedText);
                 break;
 
             case sf::Event::KeyReleased:
@@ -123,6 +133,7 @@ int main()
         window.draw(note);
         window.draw(scoreText);
         window.draw(comboText);
+        window.draw(speedText);
 
         window.display();
     }
