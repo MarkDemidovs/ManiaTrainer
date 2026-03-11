@@ -71,9 +71,8 @@ int main()
         {
             note.setPosition((rand() % 4 + 1) * 100, 0.f);
             score -= 100;
-
+            speed--;
             combo = 0;
-
             scoreText.setString(std::to_string(score));
             comboText.setString(std::to_string(combo));
         }
